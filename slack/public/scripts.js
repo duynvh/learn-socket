@@ -19,34 +19,9 @@ socket.on('nsList',(nsData) => {
     Array.from(document.getElementsByClassName("namespace")).forEach((ele) => {
         ele.addEventListener('click', (e) => {
             const nsEndpoint = ele.getAttribute("ns");
-            console.log(`${nsEndpoint} I should go to now`);
+            joinNs(nsEndpoint);
         });
     });
-
-    // const nsSocket = io('http://localhost:9005/wiki');
-    // nsSocket.on('nsRoomLoad', (nsRooms) => {
-    //     let roomList = document.querySelector('.room-list');
-    //     roomList.innerHTML = "";
-
-    //     nsRooms.forEach((room) => {
-    //         let glyph;
-    //         if (room.privateRoom) {
-    //             glyph = "lock";
-    //         } else {
-    //             glyph = "globe";
-    //         }
-
-    //         roomList.innerHTML += `<li class="room"><span class="glyphicon glyphicon-${glyph}"></span>${room.roomTitle}</li>`
-            
-    //         // Add click listener to each room
-    //         let roomNodes = document.getElementsByClassName('room');
-    //         Array.from(roomNodes).forEach((elem) => {
-    //             elem.addEventListener('click', (e) => {
-    //                 console.log(`I should go to now`);
-    //             });
-    //         })
-    //     });
-    // })
-
+    
     joinNs("/wiki");
 });
