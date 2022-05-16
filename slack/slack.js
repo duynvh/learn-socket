@@ -26,11 +26,8 @@ namespaces.forEach(namespace => {
         nsSocket.emit('nsRoomLoad', namespace.rooms);
         nsSocket.on('joinRoom', (roomToJoin, numberOfUserCallback) => {
             nsSocket.join(roomToJoin);
-            // io.of('/wiki').in(roomToJoin).clients((error, clients) => {
-            //     console.log(clients);
-            // });
-
-            numberOfUserCallback();
+            let clients = io.of('/wiki').adapter.rooms.get(roomToJoin);
+            numberOfUserCallback(clients.size);
         });
 
         nsSocket.on("newMessageToServer", msg => {
